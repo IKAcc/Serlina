@@ -1,0 +1,17 @@
+from django.db import models
+
+# Create your models here.
+
+class BlogPost(models.Model):
+    """Store blog's post
+    this model related to :model: auth.user
+    """
+
+    title = models.CharField("Post title", max_length=100)
+    article = models.TextField()
+    # thumbnal
+    # comment
+    # author
+    # category
+
+class 
