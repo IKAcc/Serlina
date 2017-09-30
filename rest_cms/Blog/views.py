@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from Blog.models import BlogCategory
+from Blog.serializers import BlogCategorySerializer
+from rest_framework import generics
 
-# Create your views here.
+
+class BlogCategoryList(generics.ListCreateAPIView):
+    queryset = BlogCategory.objects.all()
+    serializer_class = BlogCategorySerializer
