@@ -1,21 +1,22 @@
-"""rest_cms URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url
 from django.contrib import admin
+from rest_framework.urlpatterns import format_suffix_patterns
+
+from Blog import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    #/categories/
+    url(r'^categories/', views.CategoryListView.as_view()),
+    #/edit_category/
+    url(r'^edit_category/(?P<pk>[0-9+])/', views.UpdateCategoryView.as_view()),
+    #/tags/
+    url(r'^tag/', views.TagListView.as_view()),
+    # /edit_tag/
+    url(r'^edit_tag/(?P<pk>[0-9+])/', views.UpdateTagView.as_view()),
+    #/add_post/
+    url(r'add_post/', views.AddPostView.as_view()),
+    #/edit_post/
+    url(r'edit_post/(?P<pk>[0-9]+)/', views.UpdatePostView.as_view()),
+    #/post_list/
+    url(r'post_list/', views.BlogPostLitView.as_view()),
 ]
