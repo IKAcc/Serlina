@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from Blog import views
@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'edit_post/(?P<pk>[0-9]+)/', views.UpdatePostView.as_view()),
     #/post_list/
     url(r'post_list/', views.BlogPostLitView.as_view()),
+    url(r'user/', include('authentication.urls')),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

@@ -3,6 +3,7 @@ from rest_framework import serializers
 from Blog.models import BlogCategory, BlogTag, BlogPost, BlogComment, BlogInteracter
 from django.contrib.auth.models import User
 
+from authentication.serializers import UserSerializer
 class BlogCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogCategory
@@ -17,7 +18,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
 
     category = BlogCategorySerializer(read_only = True, many = True)
     tags = BlogTagSerializer(many = True)
-    author = AuthorSerializer(many = True)
+    author = UserSerializer(many = True)
 
     class Meta:
         model = BlogPost
@@ -32,8 +33,3 @@ class BlogInteracterSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogInteracter
         fields = ('id', 'name', 'family', 'email', 'comment')
-
-class AuthorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
